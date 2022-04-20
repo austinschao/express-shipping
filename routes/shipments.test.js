@@ -13,8 +13,7 @@ const app = require("../app");
 /** POST /shipments - Add a shipment  */
 describe("POST /", function () {
   test("valid", async function () {
-    shipItApi.shipProduct
-            .mockReturnValue(1111)
+    shipItApi.shipProduct.mockReturnValue(1111)
 
     const resp = await request(app).post("/shipments").send({
       productId: 1000,
@@ -36,6 +35,7 @@ describe("POST /", function () {
       zipcode: "12345-6789",
     });
 
+    expect(resp.statusCode).toEqual(400);
     expect(resp.body).toEqual({
       "error": {
         "message": [
